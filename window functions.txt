@@ -1,0 +1,197 @@
+a.select sal from (select sal,row_num()oveer(order by sal desc) rn from empy)e where rn=6;
+
+ q.nth highest sal in windows function
+
+select job,sal,rn from (select job ,sal,row_num()over (partiti> select *, row_number() over(order by deptno) as rownumber from empy;
++-------+--------+-----------+------+------------+------+------+--------+-------+-----------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE | rownumber |
++-------+--------+-----------+------+------------+------+------+--------+-------+-----------+
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450 | NULL |     10 |     2 |         1 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000 | NULL |     10 |     1 |         2 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300 | NULL |     10 |     3 |         3 |
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800 | NULL |     20 |     5 |         4 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975 | NULL |     20 |     2 |         5 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000 | NULL |     20 |     1 |         6 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100 | NULL |     20 |     4 |         7 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000 | NULL |     20 |     1 |         8 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600 |  300 |     30 |     3 |         9 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250 |  500 |     30 |     4 |        10 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250 | 1400 |     30 |     4 |        11 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850 | NULL |     30 |     2 |        12 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500 | NULL |     30 |     3 |        13 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950 | NULL |     30 |     5 |        14 |
++-------+--------+-----------+------+------------+------+------+--------+-------+-----------+
+14 rows in set (0.01 sec)
+
+mysql> select *, dense_rank() over(order by deptno) as rownumber from empy;
++-------+--------+-----------+------+------------+------+------+--------+-------+-----------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE | rownumber |
++-------+--------+-----------+------+------------+------+------+--------+-------+-----------+
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450 | NULL |     10 |     2 |         1 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000 | NULL |     10 |     1 |         1 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300 | NULL |     10 |     3 |         1 |
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800 | NULL |     20 |     5 |         2 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975 | NULL |     20 |     2 |         2 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000 | NULL |     20 |     1 |         2 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100 | NULL |     20 |     4 |         2 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000 | NULL |     20 |     1 |         2 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600 |  300 |     30 |     3 |         3 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250 |  500 |     30 |     4 |         3 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250 | 1400 |     30 |     4 |         3 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850 | NULL |     30 |     2 |         3 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500 | NULL |     30 |     3 |         3 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950 | NULL |     30 |     5 |         3 |
++-------+--------+-----------+------+------------+------+------+--------+-------+-----------+
+14 rows in set (0.00 sec)
+
+mysql> select *, rank() over(order by deptno) as rownumber from empy;
++-------+--------+-----------+------+------------+------+------+--------+-------+-----------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE | rownumber |
++-------+--------+-----------+------+------------+------+------+--------+-------+-----------+
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450 | NULL |     10 |     2 |         1 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000 | NULL |     10 |     1 |         1 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300 | NULL |     10 |     3 |         1 |
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800 | NULL |     20 |     5 |         4 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975 | NULL |     20 |     2 |         4 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000 | NULL |     20 |     1 |         4 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100 | NULL |     20 |     4 |         4 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000 | NULL |     20 |     1 |         4 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600 |  300 |     30 |     3 |         9 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250 |  500 |     30 |     4 |         9 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250 | 1400 |     30 |     4 |         9 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850 | NULL |     30 |     2 |         9 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500 | NULL |     30 |     3 |         9 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950 | NULL |     30 |     5 |         9 |
++-------+--------+-----------+------+------------+------+------+--------+-------+-----------+
+14 rows in set (0.00 sec)
+
+mysql> select *, rank() over(order by deptno) as rownumber from empy where rownumber = 3;
+ERROR 1054 (42S22): Unknown column 'rownumber' in 'where clause'
+mysql> select *, rank() over(order by deptno) as rownumber where rank = 3;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 3' at line 1
+mysql> select *, rank() over(order by deptno) as from empy rownumber where rank = 3 ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from empy rownumber where rank = 3' at line 1
+mysql> select *, rank() over(order by deptno) as from empy rownumber where rank = '3' ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from empy rownumber where rank = '3'' at line 1
+mysql> select *, rank where rownumber = 3 over(order by deptno) as from empy  ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where rownumber = 3 over(order by deptno) as from empy' at line 1
+mysql> select * from empy where rank = 3;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 3' at line 1
+mysql> select * from empy where grade = 3;
++-------+--------+----------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME  | JOB      | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+--------+----------+------+------------+------+------+--------+-------+
+|  7499 | ALLEN  | SALESMAN | 7698 | 1981-02-20 | 1600 |  300 |     30 |     3 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1500 | NULL |     30 |     3 |
+|  7934 | MILLER | CLERK    | 7782 | 1982-01-23 | 1300 | NULL |     10 |     3 |
++-------+--------+----------+------+------------+------+------+--------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from empy group by grade ;
++-------+-------+----------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME | JOB      | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+-------+----------+------+------------+------+------+--------+-------+
+|  7369 | SMITH | CLERK    | 7902 | 1980-12-17 |  800 | NULL |     20 |     5 |
+|  7499 | ALLEN | SALESMAN | 7698 | 1981-02-20 | 1600 |  300 |     30 |     3 |
+|  7521 | WARD  | SALESMAN | 7698 | 1981-02-22 | 1250 |  500 |     30 |     4 |
+|  7566 | JONES | MANAGER  | 7839 | 1981-04-02 | 2975 | NULL |     20 |     2 |
+|  7788 | SCOTT | ANALYST  | 7566 | 1982-12-09 | 3000 | NULL |     20 |     1 |
++-------+-------+----------+------+------------+------+------+--------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select max(grade) from empy group by grade ;
++------------+
+| max(grade) |
++------------+
+|          5 |
+|          3 |
+|          4 |
+|          2 |
+|          1 |
++------------+
+5 rows in set (0.00 sec)
+
+mysql> select max(grade) from empy grade ;
++------------+
+| max(grade) |
++------------+
+|          5 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select job,sal,lag(sal) over (partition by job order by sal) lag_fun from empy;
++-----------+------+---------+
+| job       | sal  | lag_fun |
++-----------+------+---------+
+| ANALYST   | 3000 |    NULL |
+| ANALYST   | 3000 |    3000 |
+| CLERK     |  800 |    NULL |
+| CLERK     |  950 |     800 |
+| CLERK     | 1100 |     950 |
+| CLERK     | 1300 |    1100 |
+| MANAGER   | 2450 |    NULL |
+| MANAGER   | 2850 |    2450 |
+| MANAGER   | 2975 |    2850 |
+| PRESIDENT | 5000 |    NULL |
+| SALESMAN  | 1250 |    NULL |
+| SALESMAN  | 1250 |    1250 |
+| SALESMAN  | 1500 |    1250 |
+| SALESMAN  | 1600 |    1500 |
++-----------+------+---------+
+14 rows in set (0.00 sec)
+
+mysql> select job,sal,lead(sal) over (partition by job order by sal) lead_fun from empy;
++-----------+------+----------+
+| job       | sal  | lead_fun |
++-----------+------+----------+
+| ANALYST   | 3000 |     3000 |
+| ANALYST   | 3000 |     NULL |
+| CLERK     |  800 |      950 |
+| CLERK     |  950 |     1100 |
+| CLERK     | 1100 |     1300 |
+| CLERK     | 1300 |     NULL |
+| MANAGER   | 2450 |     2850 |
+| MANAGER   | 2850 |     2975 |
+| MANAGER   | 2975 |     NULL |
+| PRESIDENT | 5000 |     NULL |
+| SALESMAN  | 1250 |     1250 |
+| SALESMAN  | 1250 |     1500 |
+| SALESMAN  | 1500 |     1600 |
+| SALESMAN  | 1600 |     NULL |
++-----------+------+----------+
+14 rows in set (0.00 sec)
+
+mysql> select top 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '2' at line 1
+mysql> select top 2 from empy;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '2 from empy' at line 1
+mysql> select* from empy top 2 sal;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '2 sal' at line 1
+mysql> select top 2 sal from empy;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '2 sal from empy' at line 1
+mysql> select limit 2 sal from empy;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'limit 2 sal from empy' at line 1
+mysql>
+mysql> select limit 2 sal from empy;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'limit 2 sal from empy' at line 1
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+on by job,sal order by sal desc) rn from empy) e where rn=1;
